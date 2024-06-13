@@ -1,7 +1,28 @@
 package com.orders_management.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.List;
+
+@Entity
+@Table(name = "customer")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class CustomerEntity {
+    @Id
+    @Column(name = "id_customer", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCustomer;
+    @Column(length = 20, nullable = false)
     private String name;
-    private OrderEntity orders;
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<OrderEntity> orders;
 }
