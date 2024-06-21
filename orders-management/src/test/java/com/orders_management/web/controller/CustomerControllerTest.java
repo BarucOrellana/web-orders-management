@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 
@@ -18,7 +19,7 @@ class CustomerControllerTest {
     CustomerRepository customerRepository = Mockito.mock(CustomerRepository.class);
     CustomerService customerService = new CustomerService(customerRepository);
     CustomerController customerController = new CustomerController(customerService);
-
+    CustomerEntity customer = new CustomerEntity();
     @BeforeEach
     public void createCustomers(){
         List<CustomerEntity> customers =  new ArrayList<CustomerEntity>();
@@ -27,9 +28,15 @@ class CustomerControllerTest {
         customers.add(new CustomerEntity(3,"Gapelli", null));
         customers.add(new CustomerEntity(4,"AGR Representaciones", null));
         Mockito.when(customerRepository.findAll()).thenReturn(customers);
+        Mockito.when(customerRepository.save(customer)).thenReturn(customer);
     }
     @Test
     void get_all_customers(){
         Assertions.assertEquals(ResponseEntity.ok(customerRepository.findAll()), customerController.getAll());
+    }
+    @Test
+    public void save_new_customer() {
+        customer = new CustomerEntity(5, "DVA", null);
+        Assertions.assertEquals(ResponseEntity.ok(customerRepository.save(customer)), customerController.saveCustomer(customer));
     }
 }
