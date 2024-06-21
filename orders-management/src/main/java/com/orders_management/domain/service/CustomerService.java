@@ -19,4 +19,10 @@ public class CustomerService {
     public List<CustomerEntity> getAll(){
         return this.customerRepository.findAll();
     }
+    public CustomerEntity saveCustomer(CustomerEntity customer){
+        return this.customerRepository.save(customer);
+    }
+    public boolean exits(int idCustomer){
+        return this.customerRepository.existsById(idCustomer);
+    }
 }
