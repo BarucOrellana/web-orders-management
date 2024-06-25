@@ -19,6 +19,9 @@ public class CustomerService {
     public List<CustomerEntity> getAll(){
         return this.customerRepository.findAll();
     }
+    public CustomerEntity getCustomerById(int idCustomer){
+        return this.customerRepository.getCustomer(idCustomer);
+    }
     public CustomerEntity saveCustomer(CustomerEntity customer){
         return this.customerRepository.save(customer);
     }

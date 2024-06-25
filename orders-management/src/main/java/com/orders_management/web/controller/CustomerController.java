@@ -21,6 +21,10 @@ public class CustomerController {
     public ResponseEntity<List<CustomerEntity>> getAll(){
         return ResponseEntity.ok(this.customerService.getAll());
     }
+    @GetMapping("/{id_customer}")
+    public ResponseEntity<CustomerEntity> getCustomer(@PathVariable("id_customer") int idCustomer ){
+        return ResponseEntity.ok(this.customerService.getCustomerById(idCustomer));
+    }
     @PostMapping("/new-customer")
     public ResponseEntity<CustomerEntity> saveCustomer(@RequestBody CustomerEntity customer){
         if(!this.customerService.exits(customer.getIdCustomer())) {
