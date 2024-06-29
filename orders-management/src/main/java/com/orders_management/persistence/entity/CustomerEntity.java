@@ -22,6 +22,8 @@ public class CustomerEntity {
     private int idCustomer;
     @Column(length = 20, nullable = false)
     private String name;
+    @Column(length = 50, nullable = false)
+    private String email;
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<OrderEntity> orders;
