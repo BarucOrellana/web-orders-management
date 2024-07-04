@@ -49,7 +49,7 @@ public class OrderEntity {
     @JoinColumn(name = "id_customer", referencedColumnName = "id_customer", insertable = false, updatable = false)
     private CustomerEntity customer;
     @ManyToOne
-    @JoinColumn(name = "destination", referencedColumnName = "destination", insertable = false, updatable = false)
+    @JoinColumn(name = "id_destination", referencedColumnName = "id_destination", insertable = false, updatable = false)
     private DestinationEntity destination;
     @ManyToOne
     @JoinColumn(name = "id_truck", referencedColumnName = "id_truck", insertable = false, updatable = false)

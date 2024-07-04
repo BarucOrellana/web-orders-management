@@ -17,6 +17,9 @@ import java.util.List;
 @AllArgsConstructor
 public class DestinationEntity {
     @Id
+    @Column(name = "id_destination", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idDestination;
     @Column(length = 50, nullable = false)
     private String destination;
     @Column(name = "1 TON", columnDefinition = "TINYINT")
@@ -34,4 +37,10 @@ public class DestinationEntity {
     @OneToMany(mappedBy = "destination", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<OrderEntity> order;
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "customer_destination",
+            joinColumns = @JoinColumn(name = "destination_id", referencedColumnName = "id_destination"),
+            inverseJoinColumns = @JoinColumn(name = "customer_id", referencedColumnName = "id_customer"))
+    private List<CustomerEntity> customers;
 }
