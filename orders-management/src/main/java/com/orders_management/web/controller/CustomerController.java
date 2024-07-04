@@ -21,14 +21,29 @@ public class CustomerController {
     public ResponseEntity<List<CustomerEntity>> getAll(){
         return ResponseEntity.ok(this.customerService.getAll());
     }
-    @GetMapping("/{id_customer}")
-    public ResponseEntity<CustomerEntity> getCustomer(@PathVariable("id_customer") int idCustomer ){
+    @GetMapping("/{idCustomer}")
+    public ResponseEntity<CustomerEntity> getCustomer(@PathVariable("idCustomer") int idCustomer ){
         return ResponseEntity.ok(this.customerService.getCustomerById(idCustomer));
     }
     @PostMapping("/new-customer")
     public ResponseEntity<CustomerEntity> saveCustomer(@RequestBody CustomerEntity customer){
         if(!this.customerService.exits(customer.getIdCustomer())) {
             return ResponseEntity.ok(this.customerService.saveCustomer(customer));
+        }
+        return ResponseEntity.badRequest().build();
+    }
+    @PutMapping("/update-customer")
+    public ResponseEntity<CustomerEntity> updateCustomer(@RequestBody CustomerEntity customer) {
+        if (this.customerService.exits(customer.getIdCustomer())) {
+            return ResponseEntity.ok(this.customerService.saveCustomer(customer));
+        }
+        return ResponseEntity.badRequest().build();
+    }
+    @DeleteMapping("/delete/{id_customer}")
+    public ResponseEntity<CustomerEntity> deleteCustomer(@PathVariable("id_customer") int idCustomer){
+        if (this.customerService.exits(idCustomer)){
+            this.customerService.deleteCustomer(idCustomer);
+            return ResponseEntity.ok().build();
         }
         return ResponseEntity.badRequest().build();
     }
