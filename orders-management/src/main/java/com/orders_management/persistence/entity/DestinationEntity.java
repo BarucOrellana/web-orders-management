@@ -37,7 +37,7 @@ public class DestinationEntity {
     @OneToMany(mappedBy = "destination", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<OrderEntity> order;
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany
     @JoinTable(
             name = "customer_destination",
             joinColumns = @JoinColumn(name = "destination_id", referencedColumnName = "id_destination"),
