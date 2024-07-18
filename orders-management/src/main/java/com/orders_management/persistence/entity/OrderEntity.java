@@ -1,5 +1,6 @@
 package com.orders_management.persistence.entity;
 
+import com.orders_management.domain.util.BooleanToIntegerConvert;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,8 +24,8 @@ public class OrderEntity {
     private LocalDate date;
     @Column(name = "id_customer", nullable = false)
     private int idCustomer;
-    @Column(name = "destination", length = 50, nullable = false)
-    private String destinationName;
+    @Column(name = "id_destination", length = 50, nullable = false)
+    private int idDestination;
     @Column(name = "id_truck")
     private int idTruck;
     @Column(name = "id_operator")
@@ -34,8 +35,10 @@ public class OrderEntity {
     @Column
     private int invoice;
     @Column(columnDefinition = "TINYINT")
+    @Convert(converter = BooleanToIntegerConvert.class)
     private boolean accepted;
     @Column(columnDefinition = "TINYINT")
+    @Convert(converter = BooleanToIntegerConvert.class)
     private boolean finished;
     @Column
     private double fuel;
