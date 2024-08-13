@@ -18,7 +18,7 @@ public class UserEntity {
     @Id
     @Column(length = 50, nullable = false)
     private String username;
-    @Column(length = 50, nullable = false)
+    @Column(nullable = false)
     private String password;
     @Column(columnDefinition = "TINYINT")
     private boolean locked;
