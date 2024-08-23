@@ -58,6 +58,7 @@ public class AuthController {
         if (cachedAuthCode != null && cachedAuthCode.equals(dto.getToken())) {
             HttpHeaders headers = new HttpHeaders();
             headers.add(HttpHeaders.AUTHORIZATION, jwt);
+            headers.add("ROLE", this.userService.getRole(dto));
             return ResponseEntity.ok().headers(headers).build();
         } else {
             return ResponseEntity.badRequest().build();
