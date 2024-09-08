@@ -22,25 +22,24 @@ public class DestinationEntity {
     private int idDestination;
     @Column(length = 50, nullable = false)
     private String destination;
-    @Column(name = "1 TON", columnDefinition = "TINYINT")
+    @Column(name = "id_customer", nullable = false)
+    private int idCustomer;
+    @Column(name = "1_TON", columnDefinition = "TINYINT")
     private boolean kg1000;
-    @Column(name = "3 TON", columnDefinition = "TINYINT")
+    @Column(name = "3_TON", columnDefinition = "TINYINT")
     private boolean kg3000;
-    @Column(name = "5 TON", columnDefinition = "TINYINT")
+    @Column(name = "5_TON", columnDefinition = "TINYINT")
     private boolean kg5000;
-    @Column(name = "10 TON", columnDefinition = "TINYINT")
+    @Column(name = "10_TON", columnDefinition = "TINYINT")
     private boolean kg10000;
-    @Column(name = "15 TON", columnDefinition = "TINYINT")
+    @Column(name = "15_TON", columnDefinition = "TINYINT")
     private boolean kg15000;
     @Column(nullable = false)
     private double price;
     @OneToMany(mappedBy = "destination", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<OrderEntity> order;
-    @ManyToMany
-    @JoinTable(
-            name = "customer_destination",
-            joinColumns = @JoinColumn(name = "destination_id", referencedColumnName = "id_destination"),
-            inverseJoinColumns = @JoinColumn(name = "customer_id", referencedColumnName = "id_customer"))
-    private List<CustomerEntity> customers;
+    @ManyToOne
+    @JoinColumn(name = "id_customer", referencedColumnName = "id_customer", insertable = false, updatable = false)
+    private CustomerEntity customer;
 }

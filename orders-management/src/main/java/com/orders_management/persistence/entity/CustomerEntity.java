@@ -27,7 +27,7 @@ public class CustomerEntity {
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<OrderEntity> orders;
-    @ManyToMany(mappedBy = "customers", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<DestinationEntity> destinations;
 }
