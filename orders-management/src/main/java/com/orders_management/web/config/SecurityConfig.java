@@ -38,7 +38,7 @@ public class SecurityConfig {
                     .requestMatchers(HttpMethod.GET, "/orders/*").hasRole("FINANCE")
                     .requestMatchers(HttpMethod.GET, "/orders/summary/operation").hasRole("OPERATION")
                     .requestMatchers(HttpMethod.GET, "/orders/summary/sales").hasRole("SALES")
-                    .requestMatchers(HttpMethod.POST, "/orders/*").hasRole("FINANCE")
+                    .requestMatchers(HttpMethod.POST, "/orders/*").hasRole("SALES")
                     .requestMatchers(HttpMethod.PUT, "/orders/*").hasRole("FINANCE")
                     .requestMatchers(HttpMethod.PUT, "/orders/operation/*").hasRole("OPERATION")
                     .requestMatchers(HttpMethod.PUT, "/orders/sales/*").hasRole("SALES")
