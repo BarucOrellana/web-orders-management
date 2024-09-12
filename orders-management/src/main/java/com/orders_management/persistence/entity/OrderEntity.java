@@ -27,9 +27,9 @@ public class OrderEntity {
     @Column(name = "id_destination", length = 50, nullable = false)
     private int idDestination;
     @Column(name = "id_truck")
-    private int idTruck;
+    private Integer idTruck;
     @Column(name = "id_operator")
-    private int idOperator;
+    private Integer idOperator;
     @Column(name = "other_charges")
     private double otherCharges;
     @Column
@@ -54,10 +54,10 @@ public class OrderEntity {
     @ManyToOne
     @JoinColumn(name = "id_destination", referencedColumnName = "id_destination", insertable = false, updatable = false)
     private DestinationEntity destination;
-    @ManyToOne
+    @ManyToOne(optional = true)
     @JoinColumn(name = "id_truck", referencedColumnName = "id_truck", insertable = false, updatable = false)
     private TruckEntity truck;
-    @ManyToOne
+    @ManyToOne(optional = true)
     @JoinColumn(name = "id_operator", referencedColumnName = "id_operator", insertable = false, updatable = false)
     private OperatorEntity operator;
 }
