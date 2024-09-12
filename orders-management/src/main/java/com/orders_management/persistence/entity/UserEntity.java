@@ -20,6 +20,8 @@ public class UserEntity {
     private String username;
     @Column(nullable = false)
     private String password;
+    @Column(length = 50, nullable = false)
+    private String email;
     @Column(columnDefinition = "TINYINT")
     private boolean locked;
     @Column(columnDefinition = "TINYINT")
