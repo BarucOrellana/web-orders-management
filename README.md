@@ -8,6 +8,8 @@ La API se conecta a una base de datos que ayudara a la organización a llevar un
 
 <li>Java: 17</li>
 <li>Spring Boot: 3.3.0</li>
+<li>Spring Security: 3.2.2</li>
+<li>Spring Data: 3.2.2</li>
 <li>Lombok: 1.18.34</li>
 <li>Mysql-connector-j: 9.0.0</li>
 <li>Mockito: 5.11.0</li>
